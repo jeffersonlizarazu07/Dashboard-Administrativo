@@ -19,7 +19,7 @@ const Dashboard = () => {
 
   const buscarUsuarios = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3001/usuarios/");
+      const { data } = await axios.get("http://localhost:3000/usuarios/");
       setUsuarios(data);
     } catch (error) {
       console.error("Error al obtener los usuarios:", error);
@@ -155,7 +155,7 @@ const Dashboard = () => {
                   <tr key={usuario.id}>
                     <td>{usuario.id}</td>
                     <td>{usuario.nombre}</td>
-                    <td>{usuario.email}</td>
+                    <td>{usuario.correo_electronico}</td>
                     <td>{usuario.rol}</td>
                     <td>
                       <button className="btn btn-warning btn-sm" onClick={() => handleEditarUsuario(usuario)}>

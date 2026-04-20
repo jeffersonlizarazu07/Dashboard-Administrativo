@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Login.css';
-import './Dashboard.jsx'
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
+import "./Dashboard.jsx";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [user_password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();  // hook para navegación
+  const [correoElectronico, setCorreoElectronico] = useState("");
+  const [user_password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // hook para navegación
 
   const btnRegister = () => {
     navigate("/"); // Redirige a la página de registro
@@ -17,27 +17,31 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log("Datos enviados al backend", {email, user_password});
+    console.log("Datos enviados al backend", { email: correoElectronico, user_password });
+    console.log(correoElectronico)
 
     try {
-      const response = await axios.post('http://localhost:3001/usuarios/login', { email, user_password }, { withCredentials: true });
+      const response = await axios.post(
+        "http://localhost:3000/users/login",
+        { correo_electronico: correoElectronico, user_password },
+        { withCredentials: true }
+      );
       console.log(response.data);
-      
+
       // Redirigir al dashboard si el login es exitoso
-      
-      if (response.status >= 200 && response.status < 300) {  // Verifica que el estado sea 200
-        
+
+      if (response.status >= 200 && response.status < 300) {
+        // Verifica que el estado sea 200
+
         console.log(response.status);
 
-        return navigate('/dashboard');
+        return navigate("/dashboard");
       }
-      
     } catch (error) {
-      console.error('Error en login', error.response?.data || error.message);
-      setError('Correo o contraseña incorrectos');
+      console.error("Error en login", error.response?.data || error.message);
+      setError("Correo o contraseña incorrectos");
     }
   };
-
 
   return (
     <div className="login-container">
@@ -45,7 +49,11 @@ const Login = () => {
         <h3 className="text-center mb-4">Iniciar Sesión</h3>
 
         {/* Mostrar mensaje de error si existe */}
-        {error && <div className="alert alert-danger" role="alert">{error}</div>}
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleLogin}>
           <div className="form-group mb-3">
@@ -55,8 +63,8 @@ const Login = () => {
               className="form-control"
               id="email"
               placeholder="Correo"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={correoElectronico}
+              onChange={(e) => setCorreoElectronico(e.target.value)}
               required
             />
           </div>
@@ -72,10 +80,17 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary btn-block w-100">Ingresar</button>
+          <button type="submit" className="btn btn-primary btn-block w-100">
+            Ingresar
+          </button>
 
-          <button type="submit" className="btn btn-secundary btn-block w-100" onClick={btnRegister}>Registrarse</button>
-
+          <button
+            type="submit"
+            className="btn btn-secundary btn-block w-100"
+            onClick={btnRegister}
+          >
+            Registrarse
+          </button>
         </form>
       </div>
     </div>

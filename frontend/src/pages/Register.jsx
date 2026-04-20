@@ -10,7 +10,7 @@ import Login from './Login.jsx';
 const Register = () => {
 
   const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
+  const [correoElectronico, setCorreoElectronico] = useState('');
   const [user_password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -23,16 +23,16 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    console.log("Datos enviados al backend", { nombre, email, user_password });
+    console.log("Datos enviados al backend", { nombre, correo_electronico: correoElectronico, user_password });
 
     // Validación campos
-    if (!nombre || !email || !user_password) {
+    if (!nombre || !correoElectronico || !user_password) {
       setError('Todos los campos son obligatorios.');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/usuarios', { nombre, email, user_password }, { withCredentials: true });
+      const response = await axios.post('http://localhost:3000/users', { nombre, correo_electronico: correoElectronico, user_password }, { withCredentials: true });
 
       console.log(response.data);
 
@@ -82,8 +82,8 @@ const Register = () => {
               className="form-control"
               id="email"
               placeholder="Correo"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={correoElectronico}
+              onChange={(e) => setCorreoElectronico(e.target.value)}
               required
             />
           </div>

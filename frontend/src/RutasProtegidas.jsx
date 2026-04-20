@@ -13,7 +13,7 @@ const RutasProtegidas = () => {
 
     const verificarAuth = async () => {
       try {
-        await axios.get("http://localhost:3001/usuarios/verify", { withCredentials: true });
+        await axios.get("http://localhost:20/users/verify", { withCredentials: true });
         if (!cancelado) setAutenticado(true);
       } catch (error) {
         if (!cancelado) {
