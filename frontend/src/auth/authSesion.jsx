@@ -1,9 +1,9 @@
-import { Outlet, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { API_URL } from "./api";
 
-const API_URL = "http://localhost:3000/users";
 
-const RutasProtegidas = () => {
+// Verificación de token
+export const ProtectedRoute = ({ children }) => {
   const [autenticado, setAutenticado] = useState(null);
 
   useEffect(() => {
@@ -17,23 +17,17 @@ const RutasProtegidas = () => {
         if (!cancelado && response.ok) setAutenticado(true);
         else if (!cancelado) setAutenticado(false);
       } catch (error) {
-        if (!cancelado) {
-          console.warn("Sesión expirada o usuario no autenticado.");
-          setAutenticado(false);
-        }
+        if (!cancelado) (setAutenticado(false), error);
       }
     };
 
     verificarAuth();
-
     return () => {
       cancelado = true;
     };
   }, []);
 
   if (autenticado === null) return <p>Cargando...</p>;
-  
-  return autenticado ? <Outlet /> : <Navigate to="/login" />;
-};
 
-export default RutasProtegidas;
+  return autenticado ? children : <Navigate to="/login" replace />;
+};
