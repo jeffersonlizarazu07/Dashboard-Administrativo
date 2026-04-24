@@ -1,10 +1,10 @@
 const SearchBar = ({ value, onChange }) => (
   <input 
-    type="text" 
-    className="form-control w-25" 
-    placeholder="Buscar..." 
+    type="text"
+    className="search-input" 
+    placeholder="Buscar usuarios..."
     value={value}
-    onChange={onChange}
+    onChange={(e) => onChange(e.target.value)}
   />
 );
 
