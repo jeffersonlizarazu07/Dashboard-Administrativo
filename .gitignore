@@ -34,3 +34,8 @@ skills-lock.json
 .env.*
 frontend/CLAUDE.md
 frontend/src/assets/diseño_crud.avif
+
+# Lock files
+package-lock.json
+backend/package-lock.json
+frontend/package-lock.json
