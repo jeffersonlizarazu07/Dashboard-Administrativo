@@ -39,3 +39,6 @@ frontend/src/assets/diseño_crud.avif
 package-lock.json
 backend/package-lock.json
 frontend/package-lock.json
+
+.playwright-mcp
+opencode.json
