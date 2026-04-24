@@ -1,90 +1,194 @@
-/* Login.css */
+/* Login.css - DM Sans Design System */
 
-/* Estilos del contenedor que centra el formulario */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+:root {
+  --color-primary: #E85D4C;
+  --color-primary-hover: #D14A3A;
+  --color-bg: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-text: #1A1A1A;
+  --color-text-muted: #6B6B6B;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+}
+
+* {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Contenedor principal */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: url("/src/assets/tool-4311573_1280.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  min-height: 100vh;
+  background-color: #FAFAFA;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(232, 93, 76, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(232, 93, 76, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(232, 93, 76, 0.02) 0%, transparent 30%),
+    linear-gradient(135deg, #FAFAFA 0%, #F5F5F5 100%);
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Estilos de la tarjeta del formulario */
+/* Patrón geométrico sutil - círculos decorativos */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 93, 76, 0.04);
+}
+
+.login-container::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -150px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 93, 76, 0.03);
+}
+
+/* Patrón de puntos sutil */
+.pattern-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(232, 93, 76, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Tarjeta del formulario */
 .card {
   width: 100%;
-  max-width: 400px;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: gainsboro;
-  margin-bottom: 80px;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card), 0 8px 32px rgba(232, 93, 76, 0.08);
+  background-color: var(--color-surface);
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
-/* Estilo del título */
+/* Título */
 .card h3 {
-  margin-bottom: 20px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 32px;
+  text-align: center;
+  letter-spacing: -0.02em;
 }
 
-label {
+/* Labels */
+.card label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
   margin-bottom: 8px;
 }
 
+/* Inputs */
+.card .form-control {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1.5px solid #E5E5E5;
+  border-radius: var(--radius-sm);
+  background: #FAFAFA;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.card .form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(232, 93, 76, 0.1);
+  background: #FFF;
+}
+
+.card .form-control::placeholder {
+  color: #BDBDBD;
+}
 
 /* Botón primario */
 .card .btn-primary {
-  background-color: #737980;
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--color-primary);
   border: none;
-  padding: 10px;
-  margin-bottom: 15px;
+  border-radius: var(--radius-sm);
+  color: #FFF;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+  margin-bottom: 12px;
 }
 
 .card .btn-primary:hover {
-  background-color: #496653;
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
 }
 
- /* Botón secundario */
- .card .btn-secundary {
-  background-color: #737980;
-  border: none;
-  padding: 10px;
-  margin-bottom: 15px;
-  color: white;
+.card .btn-primary:active {
+  transform: translateY(0);
 }
 
+/* Botón secundario */
 .card .btn-secundary {
-  background-color: #737980;
-  border: none;
-  padding: 10px;
-  margin-bottom: 15px;
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: transparent;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all var(--transition);
 }
 
 .card .btn-secundary:hover {
-  background-color: #496653;
+  background: rgba(232, 93, 76, 0.04);
 }
 
-/* Estilo para los campos de formulario */
-.card .form-control {
-  border-radius: 4px;
-  padding: 8px;
-  font-size: 1rem;
-}
-
-/* Enlace al registro */
-.card a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.card a:hover {
-  color: #0056b3;
-}
-
-/* Mensaje de error */
-.alert {
+/* Alert/Error */
+.card .alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
   margin-bottom: 20px;
-  border-radius: 5px;
-  padding: 10px;
 }
+
+.card .alert-danger {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-2 { margin-bottom: 8px; }
+
+/* w-100 utility */
+.w-100 { width: 100%; }
+
+/* text-center utility */
+.text-center { text-align: center; }
