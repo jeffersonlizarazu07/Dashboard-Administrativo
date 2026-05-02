@@ -42,3 +42,5 @@ frontend/package-lock.json
 
 .playwright-mcp
 opencode.json
+backend/package-lock.json
+backend/package-lock.json
